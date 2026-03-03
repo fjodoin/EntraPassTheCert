@@ -475,7 +475,7 @@ class RDP:
 
 			settings = RDPClientConsoleSettings(f'rdp+ntlm-password://{self.username}:""@{self.target}', iosettings)
 			settings.mhover = False
-			settings.keyboard = False
+			settings.keyboard = True
 			settings.ducky_file = None
 			settings.ducky_autostart_delay = -1
 
