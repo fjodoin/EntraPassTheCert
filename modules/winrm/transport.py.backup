@@ -349,11 +349,7 @@ class Transport(object):
                 session.auth.interaction += 1
             
             session.auth.auth_done = True
-            try:
-                session.auth.setup_gssapi(base64.b64decode(response.headers['WWW-Authenticate'].split(' ')[1]))
-            except (KeyError, IndexError) as e:
-                print('[-] failed to login. the target machine might not be Entra-joined or P2P cert might be expired.')
-                raise e
+            session.auth.setup_gssapi(base64.b64decode(response.headers['WWW-Authenticate'].split(' ')[1]))
             self.encryption = Encryption(session, self.auth_method)
                         
         # urllib3 fails on SSL retries with unicode buffers- must send it a byte string
